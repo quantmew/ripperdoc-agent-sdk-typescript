@@ -1,185 +1,122 @@
 /**
  * Ripperdoc Agent SDK - TypeScript
- *
- * Main entry point for the SDK
+ * Main entry point.
  */
 
 // ========================================================================
-// Main Client
+// Main Client & Query
 // ========================================================================
 
-export {
-  RipperdocClient,
-  query
-} from './client/index.js';
+export { RipperdocSDKClient, query } from './client/index.js';
 
-export type {
-  ClientOptions
-} from './client/index.js';
+// ========================================================================
+// Version
+// ========================================================================
+
+export { __version__ } from './version.js';
+
+// ========================================================================
+// Transport
+// ========================================================================
+
+export { StdioTransport } from './transport/stdio.js';
+export type { Transport } from './transport/transport.js';
+
+// ========================================================================
+// MCP SDK Helpers
+// ========================================================================
+
+export { createSdkMcpServer, tool } from './mcp/sdk.js';
+export type { SdkMcpTool } from './mcp/sdk.js';
 
 // ========================================================================
 // Types
 // ========================================================================
 
 export type {
-  // Permission Modes
+  // Permission Modes & Beta
   PermissionMode,
+  SdkBeta,
+  SettingSource,
 
-  // Content Blocks
-  ContentBlock,
+  // Agent definitions
+  SystemPromptPreset,
+  ToolsPreset,
+  AgentDefinition,
+
+  // Permission types
+  PermissionUpdate,
+  PermissionRuleValue,
+  PermissionResult,
+  PermissionResultAllow,
+  PermissionResultDeny,
+  PermissionBehavior,
+  PermissionUpdateDestination,
+  ToolPermissionContext,
+  CanUseTool,
+
+  // Hook types
+  HookEvent,
+  HookMatcher,
+  HookCallback,
+  HookContext,
+  HookInput,
+  HookJSONOutput,
+  BaseHookInput,
+  PreToolUseHookInput,
+  PostToolUseHookInput,
+  UserPromptSubmitHookInput,
+  StopHookInput,
+  SubagentStopHookInput,
+  PreCompactHookInput,
+
+  // MCP Config
+  McpServerConfig,
+  McpStdioServerConfig,
+  McpSSEServerConfig,
+  McpHttpServerConfig,
+  McpSdkServerConfig,
+  SdkPluginConfig,
+
+  // Sandbox
+  SandboxSettings,
+  SandboxNetworkConfig,
+  SandboxIgnoreViolations,
+
+  // Content blocks
   TextBlock,
   ThinkingBlock,
   ToolUseBlock,
   ToolResultBlock,
-  ImageBlock,
-  ImageSource,
+  ContentBlock,
 
   // Messages
-  Message,
   UserMessage,
   AssistantMessage,
   SystemMessage,
   ResultMessage,
   StreamEvent,
-
-  // Message Sub-types
-  BaseMessage,
-  ResultData,
-  UsageInfo,
+  Message,
 
   // Options
-  RipperdocOptions,
-
-  // Extension Types
-  McpServerConfig,
-  AgentConfig,
-  HookConfig,
-  HookEvent,
-  HookPattern,
-
-  // Permission Types
-  PermissionRequest,
-  PermissionResult,
-  PermissionChecker,
-
-  // Hook Types
-  HookContext,
-  HookCallback,
-
-  // Server Types
-  ServerInfo,
-
-  // Stream Types
-  StreamMessage,
-  StreamCallback
+  RipperdocAgentOptions
 } from './types/index.js';
-
-// ========================================================================
-// Protocol
-// ========================================================================
-
-export {
-  ControlRequestBuilder,
-  isControlRequest,
-  isControlResponse,
-  isStreamMessage
-} from './protocol/index.js';
-
-export type {
-  // Control Request Types
-  ControlRequest,
-  ControlRequestData,
-  ControlSubtype,
-  InitializeRequestData,
-  InitializeOptions,
-  QueryRequestData,
-  SetPermissionModeRequestData,
-  SetModelRequestData,
-  CanUseToolRequestData,
-  GetServerInfoRequestData,
-  CloseRequestData,
-
-  // Control Response Types
-  ControlResponse,
-  ControlResponseData,
-
-  // Success Response Data Types
-  InitializeSuccessResponse,
-  QueryStartedResponse,
-  ServerInfoResponse,
-
-  // Stream Message Types
-  StreamProtocolMessage,
-  ResultMessageData
-} from './protocol/index.js';
 
 // ========================================================================
 // Errors
 // ========================================================================
 
 export {
-  // Base Error
   RipperdocSDKError,
-
-  // Connection Errors
   CLIConnectionError,
   CLINotFoundError,
-
-  // Process Errors
   ProcessError,
-
-  // Protocol Errors
-  MessageParseError,
-  InvalidMessageError,
-
-  // Transport Errors
-  TransportError,
-  WriteError,
-  ReadError,
-
-  // Stream Errors
-  StreamError,
-  StreamClosedError,
-
-  // Client Errors
-  ClientError,
-  ClientNotConnectedError,
-  ClientAlreadyConnectedError,
-  QueryInProgressError,
-  NoActiveQueryError,
-
-  // Response Errors
-  ResponseError,
-  QueryFailedError,
-  InitializationError,
-
-  // Timeout Errors
-  TimeoutError,
-
-  // Error Guards
-  isRipperdocSDKError,
-  isConnectionError,
-  isProcessError,
-  isTransportError,
-  isClientError,
-  getErrorMessage
+  CLIJSONDecodeError,
+  MessageParseError
 } from './errors/index.js';
 
 // ========================================================================
-// Transport
-// ========================================================================
-
-export {
-  StdioTransport
-} from './transport/stdio.js';
-
-export type {
-  StdioTransportOptions,
-  StdioTransportEvents
-} from './transport/stdio.js';
-
-// ========================================================================
-// Config
+// Config Utilities (kept for compatibility)
 // ========================================================================
 
 export {
